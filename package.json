@@ -37,7 +37,7 @@
     "eslint": "8.13.0",
     "eslint-plugin-import": "^2.26.0",
     "moment": "2.29.2",
-    "sass": "^1.50.0",
+    "sass": "^1.94.0",
     "standard-version": "^9.3.2",
     "svelte-check": "^4.0.0",
     "svelte-preprocess": "^6.0.0",
