@@ -65,8 +65,12 @@ export class PeriodicNotesCache extends Component {
     this.app.workspace.onLayoutReady(() => {
       console.info("[Periodic Notes] initializing cache");
       this.initialize();
-      this.registerEvent(this.app.vault.on("create", this.resolve, this));
-      this.registerEvent(this.app.vault.on("rename", this.resolveRename, this));
+      this.registerEvent(this.app.vault.on("create", (file) => {
+        if (file instanceof TFile) this.resolve(file);
+      }));
+      this.registerEvent(this.app.vault.on("rename", (file, oldPath) => {
+        if (file instanceof TFile) this.resolveRename(file, oldPath);
+      }));
       this.registerEvent(
         this.app.metadataCache.on("changed", this.resolveChangedMetadata, this)
       );

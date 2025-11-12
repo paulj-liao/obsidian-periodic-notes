@@ -7,7 +7,7 @@
   import NoteFormatSetting from "src/settings/components/NoteFormatSetting.svelte";
   import NoteTemplateSetting from "src/settings/components/NoteTemplateSetting.svelte";
   import NoteFolderSetting from "src/settings/components/NoteFolderSetting.svelte";
-  import type { Granularity } from "src/types";
+  import type { Granularity, PeriodicConfig } from "src/types";
   import Arrow from "src/settings/components/Arrow.svelte";
   import { DEFAULT_PERIODIC_CONFIG } from "src/settings";
   import type { ISettings } from "src/settings";
@@ -27,24 +27,20 @@
     settings,
     ($settings) =>
       $settings.calendarSets.find((set) => set.id === calendarSetId)!,
-    {
-      withOld(reflecting, $settings) {
-        const idx = $settings.calendarSets.findIndex(
-          (set) => set.id === calendarSetId
-        );
-        $settings.calendarSets[idx] = reflecting;
-        return $settings;
-      },
+    (reflecting, $settings) => {
+      const idx = $settings.calendarSets.findIndex(
+        (set) => set.id === calendarSetId
+      );
+      $settings.calendarSets[idx] = reflecting;
+      return $settings;
     }
   );
-  let config = writableDerived(
+  let config: Writable<PeriodicConfig> = writableDerived(
     calendarSet,
     ($calendarSet) => $calendarSet?.[granularity] ?? DEFAULT_PERIODIC_CONFIG,
-    {
-      withOld(reflecting, $calendarSet) {
-        $calendarSet[granularity] = reflecting;
-        return $calendarSet;
-      },
+    (reflecting, $calendarSet) => {
+      $calendarSet[granularity] = reflecting;
+      return $calendarSet;
     }
   );
 

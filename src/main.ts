@@ -50,12 +50,12 @@ interface IOpenOpts {
 }
 
 export default class PeriodicNotesPlugin extends Plugin {
-  public settings: Writable<ISettings>;
-  private ribbonEl: HTMLElement | null;
+  public settings!: Writable<ISettings>;
+  private ribbonEl!: HTMLElement | null;
 
-  private cache: PeriodicNotesCache;
-  public calendarSetManager: CalendarSetManager;
-  private timelineManager: TimelineManager;
+  private cache!: PeriodicNotesCache;
+  public calendarSetManager!: CalendarSetManager;
+  private timelineManager!: TimelineManager;
 
   unload(): void {
     super.unload();

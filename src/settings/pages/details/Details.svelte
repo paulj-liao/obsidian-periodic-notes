@@ -33,7 +33,7 @@
 
       router.navigate(["Periodic Notes", proposedName]);
     } catch (err) {
-      errorMsg = err.toString();
+      errorMsg = err instanceof Error ? err.message : String(err);
       (e.target as HTMLDivElement).focus();
     }
   }

@@ -27,6 +27,9 @@ export interface ISettings {
   calendarSets: CalendarSet[];
 
   enableTimelineComplication: boolean;
+
+  localeOverride: ILocaleOverride;
+  weekStart: IWeekStartOption;
 }
 
 export const DEFAULT_SETTINGS: ISettings = {
@@ -56,7 +59,7 @@ export const DEFAULT_PERIODIC_CONFIG: PeriodicConfig = Object.freeze({
 });
 
 export class PeriodicNotesSettingsTab extends PluginSettingTab {
-  private view: SvelteComponent;
+  private view!: SvelteComponent;
 
   constructor(readonly app: App, readonly plugin: WeeklyNotesPlugin) {
     super(app, plugin);

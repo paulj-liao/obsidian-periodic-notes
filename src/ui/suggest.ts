@@ -13,11 +13,11 @@ class Suggest<T> {
     this.owner = owner;
     this.containerEl = containerEl;
 
-    containerEl.on("click", ".suggestion-item", this.onSuggestionClick.bind(this));
+    containerEl.on("click", ".suggestion-item", this.onSuggestionClick.bind(this) as any);
     containerEl.on(
       "mousemove",
       ".suggestion-item",
-      this.onSuggestionMouseover.bind(this)
+      this.onSuggestionMouseover.bind(this) as any
     );
 
     scope.register([], "ArrowUp", (event) => {

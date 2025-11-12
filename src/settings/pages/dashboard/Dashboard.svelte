@@ -30,6 +30,10 @@
 
   let addEl: HTMLElement;
 
+  function getSelectValue(e: Event): any {
+    return (e.target as HTMLSelectElement).value;
+  }
+
   function addCalendarset(): void {
     let iter = 1;
     const calSets = $settings.calendarSets;
@@ -104,7 +108,7 @@
     options={getWeekStartOptions()}
     value={$localization.weekStart}
     onChange={(e) => {
-      const val = e.target.value;
+      const val = getSelectValue(e);
       $localization.weekStart = val;
       app.vault.setConfig("weekStart", val);
     }}
@@ -122,7 +126,7 @@
     options={getLocaleOptions()}
     value={$localization.localeOverride}
     onChange={(e) => {
-      const val = e.target.value;
+      const val = getSelectValue(e);
       $localization.localeOverride = val;
       app.vault.setConfig("weekStart", val);
     }}
